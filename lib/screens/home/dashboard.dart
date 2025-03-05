@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawfect/profile/profile.dart';
 import 'package:pawfect/utils/constants.dart';
-
+import 'package:pawfect/screens/nearby_stores.dart';
+import 'package:url_launcher/url_launcher.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -11,14 +13,25 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  // Test function to check if URL can be launched
+  Future<void> testUrlLauncher() async {
+    final Uri testUrl = Uri.parse("https://flutter.dev");
+
+    if (await canLaunchUrl(testUrl)) {
+      await launchUrl(testUrl, mode: LaunchMode.externalApplication);
+    } else {
+      print("Could not open the website.");
+    }
+  }
+
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
     const Text('Index 0: Home'),
-    const Text('Index 1: Discover'),
-    const Text('Index 2: Explore'),
-    const Text('Index 3: Manage'),
-    const Text('Index 4: Profile'),
+    const Text('Hello my name is Joel'),
+    const Text('Index 2: Shopping'),
+    const Text('Index 3: Reminder'),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -30,23 +43,31 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center( // Added Center to align content properly
+      body: Center(
         child: _widgetOptions[_selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: greenColor.withOpacity(0.8),
         type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex, // Ensure this updates correctly
-        onTap: _onItemTapped, // Connect onTap to function
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.blue, // Highlight selected item with blue color
+        unselectedItemColor: Colors.white, // Color for unselected items
         selectedLabelStyle: GoogleFonts.fredoka(
           fontWeight: FontWeight.normal,
           fontSize: 9,
-          color: Theme.of(context).primaryColor,
+          color: Colors.blue, // Color for selected label
         ),
         unselectedLabelStyle: GoogleFonts.fredoka(
           fontWeight: FontWeight.normal,
           fontSize: 9,
-          color: Theme.of(context).primaryColor,
+          color: Colors.white, // Color for unselected label
+        ),
+        selectedIconTheme: const IconThemeData(
+          color: Colors.blue, // Color for selected icon
+        ),
+        unselectedIconTheme: const IconThemeData(
+          color: Colors.white, // Color for unselected icon
         ),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -59,11 +80,11 @@ class _DashboardState extends State<Dashboard> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(exploreImage, height: 25, width: 25),
-            label: explore,
+            label: shopping,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(manageImage, height: 25, width: 25),
-            label: manage,
+            label: reminder,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(profileImage, height: 25, width: 25),

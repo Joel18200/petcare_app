@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawfect/login/login.dart';
 import 'package:pawfect/utils/constants.dart';
 import 'package:pawfect/components/getting_started_slider.dart';
 
@@ -112,7 +113,25 @@ class _GettingStartedState extends State<GettingStarted>{
                               }
                             } else {
                               // Navigate to the login page when on the last page
-                              context.pushNamed(loginRoute);
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) => const Login(),
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    const begin = Offset(0, 1.0); // Start from bottom
+                                    const end = Offset.zero;
+                                    const curve = Curves.easeInOut;
+
+                                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                    var offsetAnimation = animation.drive(tween);
+
+                                    return SlideTransition(
+                                      position: offsetAnimation,
+                                      child: child,
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 1000),
+                                ),
+                              );
                             }
                           });
                         },
@@ -147,7 +166,25 @@ class _GettingStartedState extends State<GettingStarted>{
                           ),
                           TextButton(
                               onPressed: () {
-                                context.pushNamed(loginRoute);
+                                Navigator.of(context).push(
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) => const Login(),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = Offset(0.0, 1.0); // Start from bottom
+                                      const end = Offset.zero;
+                                      const curve = Curves.easeInOut;
+
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                      var offsetAnimation = animation.drive(tween);
+
+                                      return SlideTransition(
+                                        position: offsetAnimation,
+                                        child: child,
+                                      );
+                                    },
+                                    transitionDuration: const Duration(milliseconds: 1000),
+                                  ),
+                                );
                               },
                               child: Text(
                                 login,

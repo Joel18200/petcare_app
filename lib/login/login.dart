@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawfect/signup/signup.dart';
 import 'package:pawfect/utils/constants.dart';
 import 'package:pawfect/components/login_textfield.dart';
 import 'package:pawfect/components/simple_button.dart';
@@ -153,7 +154,25 @@ class _LoginState extends State<Login> {
                         const SizedBox(width: 1), // Adjust spacing as needed
                         SimpleButton(
                           callback: () {
-                            context.pushNamed(dashboardRoute);
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => const Signup(),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  const begin = Offset(0.0, 1.0); // Start from bottom
+                                  const end = Offset.zero;
+                                  const curve = Curves.easeInOut;
+
+                                  var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                  var offsetAnimation = animation.drive(tween);
+
+                                  return SlideTransition(
+                                    position: offsetAnimation,
+                                    child: child,
+                                  );
+                                },
+                                transitionDuration: const Duration(milliseconds: 1000),
+                              ),
+                            );
                           },
                           text: signUp,
                         ),

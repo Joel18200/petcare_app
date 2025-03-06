@@ -35,7 +35,7 @@ class _HelpDetailState extends State<HelpDetail> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
              onPressed: () {
-              context.pop()
+              context.pop();
              },
         ),
         backgroundColor: greenColor,
@@ -78,6 +78,6 @@ class _HelpDetailState extends State<HelpDetail> {
           ),)
         ],
       ),
-    )
+    );
     }
 }

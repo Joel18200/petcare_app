@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawfect/profile/profile.dart';
+import 'package:pawfect/utils/amazoncard.dart';
 import 'package:pawfect/utils/constants.dart';
 import 'package:pawfect/screens/nearby_stores.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,8 +29,8 @@ class _DashboardState extends State<Dashboard> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const Text('Index 0: Home'),
-    const Text('Hello my name is Joel'),
-    const Text('Index 2: Shopping'),
+    const NearbyStoresScreen(),
+    AmazonCard(),
     const Text('Index 3: Reminder'),
     const Profile(),
   ];

@@ -62,15 +62,6 @@ final _router = GoRouter(routes: [
     path: petHealthRoute,
     builder: (context, state) => const PetHealth(),
   ),
-  GoRoute(
-    name: petHealthRoute,
-    path: petHealthRoute,
-    builder: (context, state) => const PetHealth(),
-  ),
-  GoRoute(
-    name: petHealthRoute,
-    path: petHealthRoute,
-    builder: (context, state) => const PetHealth(),
-  )
+
 ]);
 

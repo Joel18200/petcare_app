@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawfect/profile/profile.dart';
+import 'package:pawfect/reminder/reminder_page.dart';
+import 'package:pawfect/screens/home/pet_dashboard.dart';
 import 'package:pawfect/utils/amazoncard.dart';
 import 'package:pawfect/utils/constants.dart';
 import 'package:pawfect/screens/nearby_stores.dart';
@@ -28,10 +30,10 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const Text('Index 0: Home'),
+    const PetDashboard(),
     const NearbyStoresScreen(),
     AmazonCard(),
-    const Text('Index 3: Reminder'),
+    const ReminderPage(),
     const Profile(),
   ];
 

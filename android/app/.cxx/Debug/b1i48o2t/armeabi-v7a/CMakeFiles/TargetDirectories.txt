@@ -1,0 +1,2 @@
+C:/Users/sujit/StudioProjects/pawfect/android/app/.cxx/Debug/b1i48o2t/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/sujit/StudioProjects/pawfect/android/app/.cxx/Debug/b1i48o2t/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "4216888983",
+    "firebase_url": "https://pawfect-bf871-default-rtdb.firebaseio.com",
+    "project_id": "pawfect-bf871",
+    "storage_bucket": "pawfect-bf871.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4216888983:android:c1fe264b0aa5807fb493d2",
+        "android_client_info": {
+          "package_name": "com.example.pawfect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4216888983-nojc3ggdlc9l94234amcn5pnvs5ab8pp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfWmNFqhxBfTV6KMwhJ7dIKe-pceathjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4216888983-nojc3ggdlc9l94234amcn5pnvs5ab8pp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "4216888983-4uqa31fjct3r57d63n192ufhsiqt4v5b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pawfect"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4216888983:android:a277d4889b42a382b493d2",
+        "android_client_info": {
+          "package_name": "com.pawfect.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4216888983-nojc3ggdlc9l94234amcn5pnvs5ab8pp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfWmNFqhxBfTV6KMwhJ7dIKe-pceathjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4216888983-nojc3ggdlc9l94234amcn5pnvs5ab8pp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "4216888983-4uqa31fjct3r57d63n192ufhsiqt4v5b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pawfect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

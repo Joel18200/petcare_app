@@ -1,43 +1,68 @@
+import java.util.Properties
+
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("dev.flutter.flutter-gradle-plugin") // Flutter Gradle Plugin must be applied after Android & Kotlin
+    id 'com.android.application'
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin'
+}
+
+// 🔐 Load keystore properties
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("../key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    throw new GradleException("❌ key.properties file not found at ${keystorePropertiesFile.absolutePath}")
 }
 
 android {
-    namespace = "com.pawfect.app"  // Ensure this matches your package name
-    compileSdk = 35  // Use latest SDK version
+    namespace = "com.pawfect.app"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pawfect.app"  // Unique application ID
-        minSdk = 21  // Minimum SDK version
-        targetSdk = 35  // Target SDK version
-        versionCode = 1  // Update when releasing new versions
+        applicationId = "com.pawfect.app"
+        minSdk = 23
+        targetSdk = 35
+        versionCode = 1
         versionName = "1.0"
+
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a"
+        }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile rootProject.file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled = false
-            shrinkResources = false
-            // Add signing configuration here when releasing the app
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
-flutter {
-    source = "../.."
-}
-
 dependencies {
-    implementation("com.google.android.gms:play-services-maps:18.2.0") // Google Maps SDK
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
 }

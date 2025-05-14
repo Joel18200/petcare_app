@@ -6,10 +6,10 @@ import 'package:pawfect/utils/constants.dart';
 
 
 class PetCareButton extends StatelessWidget {
-  const PetCareButton({required this.icon, required this.text,super.key});
-  
+  const PetCareButton({required this.icon, required this.text,super.key, required void Function() callback});
+
   final String icon, text;
-  
+
   @override
   Widget build(BuildContext context) {
     return TextButton(

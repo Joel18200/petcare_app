@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.3.0") // Matches Gradle 8.12
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -5,16 +16,25 @@ allprojects {
     }
 }
 
-rootProject.buildDir = "../build"
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+ext {
+    androidXVersion = "1.6.0"
+    androidxCoreVersion = "1.9.0"
+
+    // ✅ Load keystoreProperties to be shared with app module
+    keystoreProperties = new Properties()
+    def keystoreFile = rootProject.file('../key.properties')
+    if (keystoreFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystoreFile))
+    } else {
+        throw new GradleException("❌ key.properties file not found at ${keystoreFile.path}")
+    }
 }
 
 subprojects {
-    project.evaluationDependsOn(":app")
+    configurations.all {
+        resolutionStrategy {
+            force "androidx.core:core-ktx:${androidxCoreVersion}"
+            force "androidx.appcompat:appcompat:${androidXVersion}"
+        }
+    }
 }
-
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}
-
